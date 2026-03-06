@@ -3,6 +3,7 @@ description:
 baseurl: "/Stimulsoft.Cloud.API.Manual"
 url: "https://stimulsoft.github.io"
 sidebar_title: "Stimulsoft BI"
+exclude_from_menu: ["Out_Of_Date"]
 
 plugins:
   - jekyll-relative-links
