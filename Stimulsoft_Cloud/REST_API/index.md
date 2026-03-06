@@ -39,19 +39,19 @@ POST
 
 [Creating a new user](Users/Post_Create.md)
 
-/1/users/<UserId>
+/1/users/&lt;UserId&gt;
 
 GET
 
 [Getting information about the user <UserId>](Users/Get_Info.md)
 
-/1/users/<UserId>
+/1/users/&lt;UserId&gt;
 
 PUT
 
 [Changing user information <UserId>](Users/Put_Edit.md)
 
-/1/users/<UserId>
+/1/users/&lt;UserId&gt;
 
 DELETE
 
@@ -69,7 +69,7 @@ PUT
 
 [Changing the current user information](Users/Put_Edit.md)
 
-/1/users/<UserId>/changepassword
+/1/users/&lt;UserId&gt;/changepassword
 
 PUT
 
@@ -81,7 +81,7 @@ PUT
 
 [Changing the password of the current user](Users/Change_password.md)
 
-/1/users/<UserId>/resetpassword
+/1/users/&lt;UserId&gt;/resetpassword
 
 PUT
 
@@ -105,7 +105,7 @@ GET
 
 [Getting a list of items](Items/Get_List.md)
 
-/1/items/<ItemId>
+/1/items/&lt;ItemId&gt;
 
 GET
 
@@ -117,31 +117,31 @@ POST
 
 [Create a new item](Items/POST_Create.md)
 
-/1/items/<ItemId>
+/1/items/&lt;ItemId&gt;
 
 PUT
 
 [Changing information about the element <ItemId>](Items/PUT_Edit.md)
 
-/1/items/<ItemId>
+/1/items/&lt;ItemId&gt;
 
 DELETE
 
 [Deleting an element <ItemId>](Items/DELETE.md)
 
-/1/items/<ItemId>/share
+/1/items/&lt;ItemId&gt;/share
 
 GET
 
 [Getting information about public access to the element <ItemId>](Items/Share/GET_Info.md)
 
-/1/items/<ItemId>/share
+/1/items/&lt;ItemId&gt;/share
 
 PUT
 
 [Changing data on public access to the element <ItemId>](Items/Share/PUT_Edit.md)
 
-/1/items/<ItemId>/share
+/1/items/&lt;ItemId&gt;/share
 
 DELETE
 
@@ -153,7 +153,7 @@ GET
 
 [Getting a list of report templates](Report_Template/GET_List.md)
 
-/1/reporttemplates/<ReportTemplateId>/
+/1/reporttemplates/&lt;ReportTemplateId&gt;/
 
 GET
 
@@ -165,13 +165,13 @@ POST
 
 [Creating a new report template](Report_Template/POST_Create.md)
 
-/1/reporttemplates/<ReportTemplateId>/
+/1/reporttemplates/&lt;ReportTemplateId&gt;/
 
 DELETE
 
 [Removing a report template <ReportTemplateId>](Report_Template/DELETE.md)
 
-/1/reporttemplates/<ReportTemplateId>/duplicate
+/1/reporttemplates/&lt;ReportTemplateId&gt;/duplicate
 
 POST
 
