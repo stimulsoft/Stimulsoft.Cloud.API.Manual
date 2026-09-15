@@ -10,11 +10,9 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 This documentation part contains instructions to access the functions of Stimulsoft Cloud. **Stimulsoft Cloud** is is a cloud-based service for creating, storing, and then deploying reports in your applications. Stimulsoft Cloud works in a web browser and does not require installation on your computer:
 
-
 * [.NET API](API/index.md) provides quick and easy access to the main functions of the system and automates user actions of Stimulsoft Cloud in your application.
 
 * [REST API](REST_API/index.md) allows you to get access to the main functions of Stimulsoft Cloud by REST from any application written on any language.
-
 
 > **Information**
 >
@@ -46,7 +44,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 To create a new user, you must use the method **SignUp()** or asynchronous version **SignUpAsync()**:
 
-
 **.NET API**
 
 ```
@@ -55,12 +52,11 @@ public void SignUp()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     connection.Accounts.Users.SignUp();
-} 
+}
 ...
 ```
 
 Or asynchronous method:
-
 
 **.NET API**
 
@@ -77,7 +73,6 @@ public async void SignUpAsync()
 This call will create a new user in your instance of Stimulsoft Cloud. Before it does this, it also checks to make sure that both the username and email are unique. The password (up to 6 characters) is stored on the server as a hash and never sent to the client in the form of a plaintext.
 
 In addition, we have two overridden methods for the signup action with additional info (first name and last name):
-
 
 **.NET API**
 
@@ -106,7 +101,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Log in registered user the class method **Login()** (**LoginAsync()**):
 
-
 **.NET API**
 
 ```
@@ -114,12 +108,11 @@ Log in registered user the class method **Login()** (**LoginAsync()**):
 public void LogIn()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");connection.Accounts.Users.Login();
-} 
+}
 ...
 ```
 
 Or asynchronous method:
-
 
 **.NET API**
 
@@ -141,7 +134,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 In order to obtain information about the user, use the methods **GetByName()** or **GetByKey()** that return a **StiUser** object. This object contains full information about the user (key of user role, workspace and root folder, OAuth identifier and type of authorization method, first name, last name, user name (email), avatar image, some flags (enabled, activated) and time when this user was created, last modified and last logged). Before calling the method **GetByName()** or **GetByKey()** you must log in as a user whose rights are allowed to have access to the necessary information.
 
-
 **.NET API**
 
 ```
@@ -158,7 +150,7 @@ public void GetUserInfo()
     var userScott = connection.Accounts.Users.GetByKey("ScottKey");
     var scottLastName = userScott.LastName;
     var scottLogin = userScott.LastLogin;
-    
+
     var currentUser = connection.Accounts.Users.Current;
     var currentName = currentUser.UserName;
 }
@@ -166,7 +158,6 @@ public void GetUserInfo()
 ```
 
 Or asynchronous method:
-
 
 **.NET API**
 
@@ -184,7 +175,7 @@ public async void GetUserInfoAsync()
     var userScott = await connection.Accounts.Users.GetByKeyAsync("ScottKey");
     var scottLastName = userScott.LastName;
     var scottLogin = userScott.LastLogin;
-    
+
     var currentUser = connection.Accounts.Users.Current;
     var currentName = currentUser.UserName;
 }
@@ -199,7 +190,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 To find or process information about users of the system, there is a method that allows you to get a list of all objects **StiUser**, to which the current user can access. Use the method **FetchAll()** (**FetchAllAsync()**).
 
-
 **.NET API**
 
 ```
@@ -211,13 +201,12 @@ public void ProcessUsersInfo()
     var users = connection.Accounts.Users.FetchAll();
 
     //find user with last name "Smith"
-    var mrSmith = users.First(a => a.FirstName == "Smith");    
+    var mrSmith = users.First(a => a.FirstName == "Smith");
 }
 ...
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -243,7 +232,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Passwords are stored in the system in the form of hashes and the **StiUser** object does not return hem. The method **ChangePassword()** (**ChangePasswordAsync()**)is used to change the password. Using parameters you must specify the current password and a new one:
 
-
 **.NET API**
 
 ```
@@ -261,7 +249,6 @@ public void ChangeUserLastName()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -287,7 +274,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Passwords are stored in the system in the form of hashes and object **StiUser** not return hem. To change the password used method **ChangePassword()** (**ChangePasswordAsync()**). The parameters you must specify the current password and new:
 
-
 **.NET API**
 
 ```
@@ -304,7 +290,6 @@ public void ChangeUserPassword()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -329,7 +314,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Creating new users goes through the creation of a new object **StiUser** and it is storing through the methods **Save()** or **SaveAsync()**:
 
-
 **.NET API**
 
 ```
@@ -348,7 +332,6 @@ public void CreateNewUser()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -369,7 +352,6 @@ public async void CreateNewUserAsync()
 
 In addition you can create a user through **Roles** using the method **NewUser()**:
 
-
 **.NET API**
 
 ```
@@ -378,10 +360,10 @@ public void NewUserFromRole()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     connection.Accounts.Users.Login();
-    
+
     var managerRole = connection.Accounts.Roles.ManagerRole;
     var newUser = managerRole.NewUser("NewUserName@example.com", "Password");
-    
+
     connection.Accounts.Users.Logout();
 }
 ...
@@ -394,7 +376,6 @@ public void NewUserFromRole()
 Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Cloud/API/Users/Deleting_User.md
 
 Remove element by calling **Delete()** (**DeleteAsync()**) the object class **StiUser** or by calling one of the methods **DeleteByKey()**, **DeleteByKeyAsync()**, **DeleteByName()**, **DeleteByNameAsync()** from collection **StiCloudConnection****.Accounts.****Users**:
-
 
 **.NET API**
 
@@ -417,7 +398,6 @@ public void DeleteItem()
 ```
 
 Asynchronous example:
-
 
 **.NET API**
 
@@ -443,7 +423,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 After all actions the user must log out. To do this, you can use the class methods **Logout()** or **LogoutAsync()**.
 
-
 **.NET API**
 
 ```
@@ -452,16 +431,15 @@ public void Logout()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     connection.Accounts.Users.Login();
-    
+
     //Enter your code
-    
+
     connection.Accounts.Users.Logout();
 }
 ...
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -471,9 +449,9 @@ public async void LogoutAsync()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     await connection.Accounts.Users.LoginAsync();
-    
+
     //Enter your code
-    
+
     await connection.Accounts.Users.LogoutAsync();
 }
 ...
@@ -487,7 +465,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 The basis of the **Stimulsoft Cloud** functionality is operations on items. The item is an object that can be visually observed in the object tree on the left side of the interface of the client application. All items are inherited from the root abstract class **StiItem** and, there is one of the following classes depending on the functionality provided:
 
-
 * **StiFolderItem** - provides a hierarchical tree structure elements;
 
 * **StiReportTemplateItem** - report template for building;
@@ -500,7 +477,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Position in the hierarchical tree structure of elements defined by the connection element and folders. Therefore, to create the item, you must first create an object of type **StiFolderItem**, specifying its position in the tree, and then use one of the methods to create an item of a particular type. The root element of the tree is represented by an instance of the class **StiFolderItem: StiCloudConnection.Items.Root**. After defining properties of the new item is necessary to perform his method **StiItem.Save()** or **StiItem.SaveAsync()**. The following example shows how to create a folder in the root of the tree of elements and add the calendar (describes Monday) to this folder:
 
-
 **.NET API**
 
 ```
@@ -509,7 +485,7 @@ public void CreateNewCalendarItem()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     await connection.Accounts.Users.LoginAsync();
-            
+
     var folderItem = connection.Items.Root.NewFolder("folder");
     folderItem.Save();
 
@@ -521,7 +497,6 @@ public void CreateNewCalendarItem()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -550,12 +525,9 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 To work with elements uses a unique identifier - keys. They are assigned automatically when you create elements.
 
-
 Press the **Access Key** command from the **More** menu to get the key.
 
-
 The key can be used to specify a particular item in the API and to access an item outside over HTTP. This example demonstrates a simple HTML-page that provides access to the report in the public domain:
-
 
 **.NET API**
 
@@ -582,7 +554,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 To get an existing item is necessary to know the key that is passed to the method as a parameter. Use methods **StiItem.GetByKey()** and **StiItem.GetByKeyAsync()**:
 
-
 **.NET API**
 
 ```
@@ -606,7 +577,6 @@ public void GetCalendarItem()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -638,7 +608,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 To find or process items, there is a method that allows you to get a list of all objects **StiItem**, to which the current user can access. Use the method **FetchAll()** (**FetchAllAsync()**).
 
-
 **.NET API**
 
 ```
@@ -656,7 +625,6 @@ public void ProcessItems()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -682,7 +650,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Remove element by calling **Delete()** (**DeleteAsync()**):
 
-
 **.NET API**
 
 ```
@@ -703,7 +670,6 @@ public void DeleteItem()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -732,7 +698,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Some element types (**StiFileItem**, **StiReportSnapshotItem**, **StiReportTemplateItem**) include resources. Using the methods **UploadFromFile()**, **UploadFromFileAsync()**, **UploadFromArray()**, **UploadFromArrayAsync()**, **DownloadToFile()**, **DownloadToFileAsync()**, **DownloadToArray()**, **DownloadToArrayAsync()**. You can manipulate the data contained in these resources. For example, creating a file on the cloud with the loading data into it looks like this:
 
-
 **.NET API**
 
 ```
@@ -754,7 +719,6 @@ public void CreateNewFile()
 
 Asynchronous method:
 
-
 **.NET API**
 
 ```
@@ -773,7 +737,6 @@ public async void CreateNewTemplateAsync()
 ```
 
 Loading item from the server and saving it to a file on the local computer as follows:
-
 
 **.NET API**
 
@@ -795,7 +758,6 @@ public void DownloadFile()
 ```
 
 Asynchronous method:
-
 
 **.NET API**
 
@@ -823,7 +785,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 The result of creating Report Template in the tree is a new element type **StiReportTemplateItem**. This object describes the report without data. Designing items of the report is made through the Navigator interface, but managing the construction is possible by means of appropriate methods **StiReportTemplateItem.Run()** and **StiReportTemplateItem.RunAsync()**. The parameter specifies the item **StiReportTemplateItem** or **StiFileItem** where you saved the rendered report. The object must be created before saving. The item **StiFileItem** can be one of the possible types of enumeration **StiFileType** (ReportSnapshot, PDF, XPS, PowerPoint, HTML, Text, RichText, Word, OpenDocumentWriter, Excel, OpenDocumentCalc, Data, Image, XML, XSD, CSV, DBF). One of these values are specified in the method **StiCloudConnection.Items.Root.NewFile()** as a parameter. The following example creates a report template, loads data into it and runs the report, after which the result is stored in the report snapshot:
 
-
 **.NET API**
 
 ```
@@ -832,11 +793,11 @@ public void RunReportToShapshot()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     await connection.Accounts.Users.LoginAsync();
-    
+
     var reportTemplateItem = connection.Items.Root.NewReportTemplate("report-template");
     reportTemplateItem.Save();
     reportTemplateItem.UploadFromFile(@"C:\report.mrt");
-    
+
     var reportSnapshotItem = connection.Items.Root.NewReportSnapshot("report-snapshot");
     reportSnapshotItem.Save();
     reportTemplateItem.Run(reportSnapshotItem);
@@ -846,7 +807,6 @@ public void RunReportToShapshot()
 
 Asynchronous method creates a report template, converts data and runs the report, after which the result is stored in the PDF file:
 
-
 **.NET API**
 
 ```
@@ -855,11 +815,11 @@ public async void RunReportToPdfFileAsync()
 {
     var connection = new StiCloudConnection("UserName@example.com", "Password");
     await connection.Accounts.Users.LoginAsync();
-    
+
     var reportTemplateItem = connection.Items.Root.NewReportTemplate("report-template");
     await reportTemplateItem.SaveAsync();
     await reportTemplateItem.UploadFromFileAsync(@"C:\report.mrt");
-    
+
     var pdfReportItem = connection.Items.Root.NewFile("report.pdf", StiFileType.Pdf);
     await pdfReportItem.SaveAsync();
     await reportTemplateItem.RunAsync(pdfReportItem);
@@ -874,7 +834,6 @@ public async void RunReportToPdfFileAsync()
 Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Cloud/REST_API/index.md
 
 REST API allows you quick and easy access to the main functions of **Stimulsoft Cloud** and automates user actions of the system in your application. Access points to the REST-services should be on your domain and be accessible via HTTP/HTTPS. For example, we will use the online version of Stimulsoft Cloud with the URL [https://cloud.stimulsoft.com](https://reports.stimulsoft.com). A relative path begins with the prefix /1/ which means the first version of REST API.
-
 
 | **EndPoint** | **HTTP Verb** | **Action** |
 | --- | --- | --- |
@@ -915,7 +874,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 The input data for each command are custom HTTP-headers prefixed with "x-sti-" and described in the table below:
 
-
 | **Custom header** | **Description** |
 | --- | --- |
 | x-sti-sessionkey | The current session key is issued after successful authentication, used in almost all commands |
@@ -937,7 +895,6 @@ Other information transmitted in the body of the request in the JSON format. Per
 
 Error example:
 
-
 **Sample JSON response**
 
 ```
@@ -956,7 +913,6 @@ Error example:
 
 Another error example:
 
-
 **Sample JSON response**
 
 ```
@@ -972,7 +928,6 @@ Another error example:
 ```
 
 Example of successful command execution, not returning data:
-
 
 **Sample JSON response**
 
@@ -997,21 +952,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Create a new user
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/signup
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 In POST-data must specify the JSON-object describing a new user:
-
 
 **POST-data in the JSON-object**
 
@@ -1030,11 +981,9 @@ In POST-data must specify the JSON-object describing a new user:
 
 curl -X POST -d "{ 'FirstName': 'John', 'LastName': 'Doe', 'UserName': 'j@d.com', 'Password': '111111' }" https://cloud.stimulsoft.com/1/signup
 
-
 **Returns**:
 
 The JSON object containing the field ResultUserKey with the key of the new user. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1058,31 +1007,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Login with username and password.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/login
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 Two custom header: x-sti-UserName and x-sti-Password, containing the username and password, respectively.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-UserName: a@a.com" -H "x-sti-Password: 111111" https://cloud.stimulsoft.com/1/login
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which will be further used for communication with the service. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1098,11 +1041,11 @@ The JSON object containing the field ResultSessionKey, which will be further use
         "Created": "\/Date(1426675381267)\/",
         "Modified": "\/Date(1426675381267)\/",
         "Permissions": {
-            
+
             "ItemFiles": "CreateDeleteModifyView",
             "ItemFolders": "CreateDeleteModifyView",
             "ItemReportTemplates": "All"
-            
+
         },
         "IsSupervisor": true,
         "IsAdministrator": true,
@@ -1135,31 +1078,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Log out of the current user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/logout
-
 
 **Method**:
 
 DELETE
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user.
-
 
 **CURL example**:
 
 curl -X DELETE -H "x-sti-SessionKey: 1638c5f0e7d347dabb7651f194768a7e" https://cloud.stimulsoft.com/1/logout
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1180,7 +1117,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 For obtaining the list of users, data modification, as well as to create new users in the cloud and delete users, use the command Users with different methods.
 
-
 | **Name** | **Description** |
 | --- | --- |
 | [GET List](Get_List.md) | Getting a list of users in a cloud of the logged-in user. |
@@ -1190,7 +1126,6 @@ For obtaining the list of users, data modification, as well as to create new use
 | **DELETE** | Removing a user from the current cloud. Removing a last user with administrator privileges isn't allowed. |
 
 Managing user passwords requires a special approach to security, so to change and reset the password using a number of separate commands. Changing the password requires an existing password. Reset password occurs in two stages - a password reset request and execution of the procedure. Password reset request executed with the command resetpassword, at the same time to the email address specified in the user data sent to e-mail with a link, activating the second stage - the actual password reset. To activate the second stage through REST-interface, you must run command resetpassword with the indication a secret one-time code (specified in the link sent in an email message), valid for two hours. Next to the postal address of the user sent another message indicating a new password:
-
 
 | **Name** | **Description** |
 | --- | --- |
@@ -1207,31 +1142,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting a list of users in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. You may use header x-sti-WorkspaceKey, containing key workspace that you are requesting a list of users.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: 55397673d1604f3a9aabf57c4ebaf856" https://cloud.stimulsoft.com/1/users
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1241,7 +1170,7 @@ The JSON object containing the field ResultSessionKey, which is a list of member
     "Ident": "UserFetchAll",
     "ResultUsers": [
     {
-        
+
         "FirstName": "John",
         "LastName": "Doe",
         "UserName": "j@d.com",
@@ -1251,7 +1180,7 @@ The JSON object containing the field ResultSessionKey, which is a list of member
         "Key": "ddb025415b68494ca8a9aee27ad73bc1"
     },
     {
-        
+
         "FirstName": "John5",
         "LastName": "Doe5",
         "UserName": "j5@d5.com",
@@ -1275,31 +1204,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting information about the user in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users/username
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The username parameter in the URI is the key user or its name and indicates the user whose data you want to get. Instead of the user name or key, you can specify the keyword "current" which replaces the identifier of the current user.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" https://cloud.stimulsoft.com/1/users/j51@d51.com
 
-
 **Returns**:
 
 The JSON object containing the field ResultUsers, in which there is data on the user in the cloud. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1330,21 +1253,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Creating a new user in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object describing the new user:
-
 
 **POST-data in the JSON-object**
 
@@ -1363,11 +1282,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. I
 
 curl -X POST -H "x-sti-SessionKey: 55397673d1604f3a9aabf57c4ebaf856" -d "{ 'FirstName': 'John5', 'LastName': 'Doe5', 'UserName': 'j5@d5.com', 'Password': '111111' }" https://cloud.stimulsoft.com/1/users
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1390,21 +1307,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Changing user data in a cloud of the logged-in user. This command does not allow change of the unique user name, which is used as an identifier, and a password - for this purpose there is other command.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users/username
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The username parameter in the URI is the key user or its name and indicates the user whose data you want to edit. Instead of the user name or key, you can specify the keyword "current" which replaces the identifier of the current user. In POST-data must specify the JSON-object describing the changed user data:
-
 
 **POST-data in the JSON-object**
 
@@ -1421,11 +1334,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. T
 
 curl -X PUT -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -d "{ 'FirstName': 'John00', 'LastName': 'Doe00', 'RoleKey': 'Manager' }" https://cloud.stimulsoft.com/1/users/j5@d5.com
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1448,31 +1359,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Removing a user from the current workspace. Removing a last user with administrator privileges isn't allowed.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users/username
-
 
 **Method**:
 
 DELETE
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The username parameter in the URI is the key of user or its name and indicates the user whose data you want to delete.
-
 
 **CURL example**:
 
 curl -X DELETE -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" https://cloud.stimulsoft.com/1/users/j5@d5.com
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1495,21 +1400,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Change user password.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/users/username/changepassword
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The username parameter in the URI is the key user or its name and indicates the user whose data you want to get. Instead of the user name or key, you can specify the keyword "current" which replaces the identifier of the current user. In POST-data must specify the JSON-object describing the current and new passwords:
-
 
 **POST-data in the JSON-object**
 
@@ -1522,16 +1423,13 @@ A custom header x-sti-SessionKey contains the session key of the current user. T
 ...
 ```
 
-
 **CURL example**:
 
 curl -X PUT -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -d "{ 'CurrentPassword': '111111', 'NewPassword': '222222' }" https://cloud.stimulsoft.com/1/users/current/changepassword
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1550,38 +1448,29 @@ The JSON object containing the field ResultSuccess which indicates that the comm
 
 Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Cloud/REST_API/Users/Reset_password.md
 
-![](../../../images/topics/Stimulsoft_Cloud.REST_API.Users.Reset_password_1.png)
-
-
 **Description**:
 
 Activating of password reset. At this stage, checked the security code, and if it is correct, the password is reset to the new specified in the parameters. To activate the procedure requires new password and the secret code obtained at the first stage. Executing this command does not require a session key.
-
 
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/resetpassword/secretcode
 
-
 **Method**:
 
 PUT
-
 
 **Parameters**:
 
 A custom header x-sti-NewPassword contains the new password. The secretcode parameter in the URI is the secret code obtained in the first stage of the procedure a password reset, and indicates the user whose password you want to reset. The secret code is valid for two hours from the time of the query reset your password.
 
-
 **CURL example**:
 
 curl -X PUT -H "x-sti-NewPassword: 222222" -d "" https://cloud.stimulsoft.com/1/resetpassword/04c86e980d2042079ee675ae09e495e9
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1603,14 +1492,12 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Items object describes the data items supported by the system. This is an abstract class that combines different types of elements. At creation of an element its type is specified in the Ident field and never changes:
 
-
 | **Object** | **Description** | **Ident** |
 | --- | --- | --- |
 | StiFolderItem | Folder, provides hierarchy of structure of elements | FolderItem |
 | StiReportTemplateItem | Report template | ReportTemplateItem |
 
 To get the list of elements, modify the data, and to create new elements in the current workspace and removing existing elements, use command Items with various methods. Each element has a unique key, which uniquely identifies it in the list of elements. Data hierarchy as a tree is realized by an element type StiFolderItem, key element it is specified in the field of FolderKey as designation of the parental folder of an element. The identifier of this element is specified in the FolderKey of other elements and provides identification of the parent folder of an element. If this field is empty or not initialized to any value, then the element belongs to the root folder.
-
 
 | **Name** | **Description** |
 | --- | --- |
@@ -1630,31 +1517,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting a list of elements in a cloud of the logged-in user. The list is returned to the specified folder.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. Custom header x-sti-ItemKey used to identify the parent folder, which list of elements needs to be retrieved. If this header is not present, it will get a list of elements of the root folder. To filter element types used header x-sti-FilterIdent. It may contain one of the values ​​in the table above Ident. If this header is absent, all elements from the requested collection will be returned. It is also possible to use the header x-sti-AllowDeleted, which is responsible for displaying the elements placed in the recycle bin (not removed completely).
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -H "x-sti-ItemKey: 7800e3265d06418a9ac4feb977fd4040" -H "x-sti-AllowDeleted: true" https://cloud.stimulsoft.com/1/items
 
-
 **Returns**:
 
 The JSON object containing the collection ResultItems, which contains a list of items in the specified folder of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1666,7 +1547,7 @@ The JSON object containing the collection ResultItems, which contains a list of 
     {
       "Ident": "FolderItem",
       "FolderKey": "7800e3265d06418a9ac4feb977fd4040",
-      
+
       "Name": "InternalFolder",
       "Description": "This is a second level folder",
       "Created": "\/Date(1425024762360)\/",
@@ -1678,7 +1559,7 @@ The JSON object containing the collection ResultItems, which contains a list of 
       "Ident": "ReportTemplateItem",
       "StateKey": "2",
       "FolderKey": "7800e3265d06418a9ac4feb977fd4040",
-      
+
       "Name": "SecondEmptyReport",
       "Description": "This is a internal report",
       "Created": "\/Date(1425025029473)\/",
@@ -1702,31 +1583,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting information about the element in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The itemkey parameter in the URI is the key of the element and indicates the element whose data you want to get.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: da5053abac4544e9856e05bbda14f46a" https://cloud.stimulsoft.com/1/items/d2283e85e9724859bcd024c3f7b982ea
 
-
 **Returns**:
 
 The JSON-object containing the field ResultItem, which is the required element of the cloud. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -1742,7 +1617,7 @@ The JSON-object containing the field ResultItem, which is the required element o
     ],
     "IsDataSource": true,
     "FolderKey": "d1a339068a474eaab65628f2fbef33a6",
-    
+
     "Name": "Demo.xml",
     "Description": "",
     "Created": "\/Date(1427455735000)\/",
@@ -1766,21 +1641,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Creating a new element in a cloud of the logged-in user. To successfully run the command you must fill in the fields Ident (assigned a value in accordance with the required type of item has one of the values listed in the table above), and Name. FolderKey field may contain the key of the parent folder, making sure that the element in the tree. If FolderKey empty or not specified, the item is displayed in the root folder.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new element:
-
 
 **POST-data in the JSON-object**
 
@@ -1799,11 +1670,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. I
 
 curl -X POST -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -d "{'Ident':'FolderItem','Name':'InternalFolder','Description':'This is a second level folder','FolderKey':'7800e3265d06418a9ac4feb977fd4040'}" https://cloud.stimulsoft.com/1/items
 
-
 **Returns**:
 
 The JSON-object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1826,21 +1695,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Changing element in a workspace of the logged-in user. This command does not allow change of the unique item key, which is used as an identifier (field Key), and the type (field Ident). Changing field FolderKey can move an item to another folder in the tree (the root, if you specify a null value).
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The itemkey parameter in the URI is the key of item and indicates the element whose data you want to change. In POST-data must specify the JSON-object describing the changed item data:
-
 
 **POST-data in the JSON-object**
 
@@ -1858,11 +1723,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. T
 
 curl -X PUT -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -d "{'Name':'SecondEmptyReport','Description':'This is a edited report', 'FolderKey':''}" https://cloud.stimulsoft.com/1/items/ca3bfa74c8114b3a83fd08c04ab31f99
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -1885,31 +1748,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Removing an element from the cloud. However, the use of this command does not guarantee the immediate removal of the element from a tree, because the command only creates an internal task of service to delete the item and the actual deletion may be delayed for some time.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey
-
 
 **Method**:
 
 DELETE
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-AllowMoveToRecycleBin allows deleting an item to the recycle bin, by default it is set to true. To remove an item with referenced resources set x-sti-AllowMoveToRecycleBin to false. The itemkey parameter in the URI is the key of item and indicates the item whose data you want to delete.
-
 
 **CURL example**:
 
 curl -X DELETE -H "x-sti-SessionKey: ea8cc765d54241e18347a043e187ada3" -H "x-sti-AllowMoveToRecycleBin: false" https://cloud.stimulsoft.com/1/items/ca3bfa74c8114b3a83fd08c04ab31f99
 
-
 **Returns**:
 
 The success of the command execution is checked by the content of the field ResultSuccess. ResultTaskKey field contains unique key of internal server tasks, created to remove the item.
-
 
 **Sample JSON response**
 
@@ -1931,11 +1788,7 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Some elements of the navigator list, can have access from the outside, declared in one of the three levels ShareLevel (Private and Public). You can also set an expiration date of public access. Manually these parameters can be set on the following form:
 
-
-![](../../../../images/topics/Stimulsoft_Cloud.REST_API.Items.Share_1.png)
-
 Software functionality is described using the command Items Share.
-
 
 | **Name** | **Description** |
 | --- | --- |
@@ -1953,31 +1806,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting information about access parameters of specified item in the cloud of the logged-in user
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey/share
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The itemkey parameter in the URI is the key of item and indicates the item whose data on the parameters of public access you want to get.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: a690257860fe456aae4c852d41c12378" https://cloud.stimulsoft.com/1/items/d6f94af9dbb945499349f2a36a3741dd/share
 
-
 **Returns**:
 
 JSON-object containing the field with the description of the parameters of public access element. ResultShareLevel describes the level of public access (Private and Public). ResultShareExpires contains the expiration date of public access (can be omitted). ResultUrl contains a link for public access. The success of the command execution is checked against the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2003,21 +1850,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Changing information about access parameters of specified item in the cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey/share
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The itemkey parameter in the URI is the key of item and indicates the item whose data of the parameters of public access you want to change. In POST-data must specify the JSON-object, which describing the changes in sharing:
-
 
 **POST-data in the JSON-object**
 
@@ -2033,11 +1876,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. T
 
 curl -X PUT -H "x-sti-SessionKey: a690257860fe456aae4c852d41c12378" -d "{'ShareLevel':'Public'}" https://cloud.stimulsoft.com/1/items/d6f94af9dbb945499349f2a36a3741dd/share
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -2060,31 +1901,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Resetting access parameters of specified item in the cloud of the logged-in user to default. These are ShareLevel, established in Private (no public access), ShareMode set in Download, as well as the absence of ShareExpires (period of validity of link of public access).
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/items/itemkey/share
-
 
 **Method**:
 
 DELETE
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The itemkey parameter in the URI is the key of item and indicates the item whose data of the parameters of public access you want to set to default.
-
 
 **CURL example**:
 
 curl -X DELETE -H "x-sti-SessionKey: a690257860fe456aae4c852d41c12378" https://cloud.stimulsoft.com/1/items/d6f94af9dbb945499349f2a36a3741dd/share
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -2105,7 +1940,6 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 ReportTemplate object describes report templates - special data elements what contains the structure of the report. To build this report you need to execute command Run. As a result was obtained an element of type StiReportSnapshot – rendered report with data. Since report templates are one type of item, then getting a list of report templates and detailed information about the report templates, as well as creating and deleting of report templates may to produce the same as any other items (use the Items command). However, the report templates have several unique action, so to work with report templates use the following command.
 
-
 | **Name** | **Description** |
 | --- | --- |
 | **GET List** | Getting a list of report templates in a cloud of the logged-in user. The list is returned to the specified folder. |
@@ -2124,31 +1958,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting a list of report templates in a cloud of the logged-in user. The list is returned to the specified folder.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. Custom header x-sti-ItemKey used to identify the parent folder, which list of report templates needs to be retrieved. If this header is not present, it will get a list of report templates of the root folder.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: 1add6a4f1c5e481c80e964b613ee6089" https://cloud.stimulsoft.com/1/reporttemplates
 
-
 **Returns**:
 
 The JSON object containing the collection ResultItems, which contains a list of report templates in the specified folder of the cloud. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2183,31 +2011,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting information about the report templates in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/reporttemplatekey
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The reporttemplatekey parameter in the URI is the key of the report templates and indicates the report templates whose data you want to get.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: 1add6a4f1c5e481c80e964b613ee6089" https://cloud.stimulsoft.com/1/reporttemplates/83a5f6d43351499fa9a2d40822f5772b
 
-
 **Returns**:
 
 The JSON object containing the field ResultItem, which is the required report template of the cloud. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2215,7 +2037,7 @@ The JSON object containing the field ResultItem, which is the required report te
 ...
 {
     "Ident": "ItemGet",
-    "ResultItem": 
+    "ResultItem":
     {
         "Ident": "ReportTemplateItem",
         "StateKey": "e",
@@ -2246,21 +2068,17 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Creating a new report template in a cloud of the logged-in user. FolderKey field may contain the key of the parent folder, making sure that the report template in the tree. If FolderKey empty or not specified, the report template is displayed in the root folder.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new report template:
-
 
 **POST-data in the JSON-object**
 
@@ -2278,11 +2096,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. I
 
 curl -X POST -H "x-sti-SessionKey: 1add6a4f1c5e481c80e964b613ee6089" -d "{'Ident': 'ReportTemplateItem', 'Name': 'NewReportTemplate', 'Description': 'This is a new report template'}" https://cloud.stimulsoft.com/1/reporttemplates
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -2305,31 +2121,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Removing a report template from the cloud. However, the use of this command does not guarantee the immediate removal of the report template from a tree, because the command only creates an internal task of service to delete the report template and the actual deletion may be delayed for some time.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/reporttemplatekey
-
 
 **Method**:
 
 DELETE
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-AllowMoveToRecycleBin allows deleting an item to the recycle bin, by default it is set to true. To remove an item with referenced resources set x-sti-AllowMoveToRecycleBin to false. The reporttemplatekey parameter in the URI is the key of report template and indicates the report template whose data you want to delete.
-
 
 **CURL example**:
 
 curl -X DELETE -H "x-sti-SessionKey: 1add6a4f1c5e481c80e964b613ee6089" -H "x-sti-AllowMoveToRecycleBin: false" https://cloud.stimulsoft.com/1/schedulers/0a8b68eb3e334fb798a8a4db3a9ee109
 
-
 **Returns**:
 
 The success of the command execution is checked by the content of the field ResultSuccess. ResultTaskKey field contains unique key of internal server tasks, created to remove the report template.
-
 
 **Sample JSON response**
 
@@ -2338,7 +2148,7 @@ The success of the command execution is checked by the content of the field Resu
 {
     "Ident": "ItemDelete",
     "ResultTaskKey": "2728300b164f4a358c6df65ee7ab9304",
-    "ResultSuccess": true 
+    "ResultSuccess": true
 }
 ...
 ```
@@ -2353,31 +2163,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Creating a new copy of the report template in a cloud of the logged-in user.
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The reporttemplatekey parameter in the URI is the key of report template and indicates the report template whose data you want to copy.
-
 
 **CURL example**:
 
 curl -X POST -H "x-sti-SessionKey: 3fd143cd876048a188a6a3d69da0f535" -d "" http://cloud.stimulsoft.com/1/reporttemplates/7e4e950c0eb54241995efe1b48fedb6e/duplicate
 
-
 **Returns**:
 
 The JSON object containing the field ResultSuccess which indicates that the command is executed successfully.
-
 
 **Sample JSON response**
 
@@ -2436,9 +2240,7 @@ Full description of the options can be found in the documentation here [https://
 
 Any ExportSet-object contain fields 'Ident' and 'PageRange'.
 
-
 Ident describes the format in which you want to export data. Values for this field listed in the table below. ExportSet Idents:
-
 
 | **Identifier** | **Description** |
 | --- | --- |
@@ -2456,7 +2258,6 @@ Ident describes the format in which you want to export data. Values for this fie
 | [Image](Image.md) | One of multiple image format |
 
 PageRange describes the pages of the report, which need to be processed. There are three possible values: All pages, Current page and selected pages or range of pages (see the table below). ExportSet PageRange:
-
 
 | **All** | **Current Page** | **Selected Pages (e.g. 1, 3, 5-7)** |
 | --- | --- | --- |
@@ -2476,21 +2277,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -2509,11 +2306,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'PDF','Description':'This is a sample export to PDF', 'FileType': 'Pdf' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2561,21 +2356,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -2599,11 +2390,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'ExportReport.pdf', 'ExportSet':{ 'Ident':'Pdf', 'PageRange':{ },'EmbeddedFonts':false,'DitheringType':'None','PdfACompliance':true } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2636,21 +2425,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -2669,11 +2454,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'XPS','Description':'This is a sample export to XPS', 'FileType': 'Xps' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2721,21 +2504,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -2758,11 +2537,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'XPS', 'ExportSet':{ 'Ident':'Xps', 'PageRange': {}, 'ImageQuality':'75', 'ImageResolution': '200' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2795,21 +2572,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -2828,11 +2601,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Power Point','Description':'This is a sample export to Power Point', 'FileType': 'PowerPoint' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2880,21 +2651,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -2917,11 +2684,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Power Point', 'ExportSet':{ 'Ident':'PowerPoint', 'PageRange': {}, 'ImageQuality':'75', 'ImageResolution': '200' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -2954,21 +2719,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -2987,11 +2748,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'HTML','Description':'This is a sample export to HTML', 'FileType': 'Html' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3039,21 +2798,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3077,11 +2832,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'HTML', 'ExportSet':{ 'Ident':'Html', 'PageRange': {}, 'HtmlType': 'Html5', 'ImageQuality':'75', 'ImageResolution': '200' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3114,21 +2867,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3147,11 +2896,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Text','Description':'This is a sample export to Text', 'FileType': 'Text' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3199,21 +2946,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3237,11 +2980,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Text', 'ExportSet':{ 'Ident':'Text', 'PageRange': {}, 'Encoding': 'UTF8', 'KillSpaceLines':'false', 'PutFeedPageCode': 'false' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3274,21 +3015,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3307,11 +3044,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Rich Text','Description':'This is a sample export to RTF', 'FileType': 'RichText' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3359,21 +3094,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3397,11 +3128,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Rich Text', 'ExportSet':{ 'Ident':'RichText', 'PageRange': {}, 'ExportMode': 'Frame', 'ImageResolution':'200', 'UsePageHeadersAndFooters': 'false' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3434,21 +3163,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3467,11 +3192,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Word','Description':'This is a sample export to Word', 'FileType': 'Word' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3519,21 +3242,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3557,11 +3276,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Word', 'ExportSet':{ 'Ident':'Word', 'PageRange': {}, 'ImageQuality': '100', 'ImageResolution':'200', 'RemoveEmptySpaceAtBottom': 'false' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3594,21 +3311,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3627,11 +3340,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'ODW','Description':'This is a sample export to Open Document Writer', 'FileType': 'OpenDocumentWriter' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3679,21 +3390,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3717,11 +3424,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'OpenDocumentWriter', 'ExportSet':{ 'Ident':'OpenDocumentWriter', 'PageRange': {}, 'ImageQuality': '100', 'ImageResolution':'200', 'RemoveEmptySpaceAtBottom': 'false' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3754,21 +3459,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3787,11 +3488,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Excel','Description':'This is a sample export to Excel', 'FileType': 'Pdf' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3839,21 +3538,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response. In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -3874,11 +3569,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: 7cc93e33645f4e05975e3a468229c00f" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'ExportReport.xlsx', 'ExportSet':{ 'Ident':'Excel2007', 'ImageQuality':'75' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3911,21 +3604,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -3944,11 +3633,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'ODC','Description':'This is a sample export to Open Document Calc', 'FileType': 'OpenDocumentCalc' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -3996,21 +3683,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -4033,11 +3716,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Open Document Calc', 'ExportSet':{ 'Ident':'OpenDocumentCalc', 'PageRange': {}, 'ImageQuality': '100', 'ImageResolution':'200' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4070,21 +3751,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -4103,11 +3780,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Data','Description':'This is a sample export to Data (CSV)', 'FileType': 'Data' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4155,21 +3830,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -4192,11 +3863,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Data', 'ExportSet':{ 'Ident':'Data', 'PageRange': {}, 'DataType': 'Csv', 'DataExportMode': 'DataAndHeadersFooters' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4229,21 +3898,17 @@ There are two stages in the export of a report template:
 
 ### Create Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files
-
 
 **Method**:
 
 POST
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-SessionKey contains the session key of the current user. In POST-data must specify the JSON-object, which describing the new file item:
-
 
 **POST-data in the JSON-object**
 
@@ -4262,11 +3927,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X POST -H "x-sti-SessionKey: 4ccbebaac38642b4a182d555aa09ee46" -d "{ 'Ident':'FileItem','Name':'Image','Description':'This is a sample export to image', 'FileType': 'Image' }" http://cloud.stimulsoft.com/1/files
 
-
 **Returns**:
 
 The JSON object containing the field ResultSessionKey, which is a list of members of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4314,21 +3977,17 @@ The JSON object containing the field ResultSessionKey, which is a list of member
 
 ### Export report template to Destination File Item
 
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/reporttemplates/{ReportTemplateKey}/run
-
 
 **Method**:
 
 PUT
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. A custom header x-sti-DestinationItemKey contains the unique key of the container element. When creating the container element, it is indicated as the value of the **Key** parameter in response.  In PUT-data must specify the JSON-object, which describing the new file item:
-
 
 **PUT-data in the JSON-object**
 
@@ -4350,11 +4009,9 @@ A custom header x-sti-SessionKey contains the session key of the current user. A
 
 curl -X PUT -H "x-sti-SessionKey: ea46a3c2c2084439832ea4518d8a5af2" -H "x-sti-DestinationItemKey: 6ad634d0764849b9801600ad8f7fe56b" -d "{ 'FileItemName':'Image', 'ExportSet':{ 'Ident':'Image', 'ImageType':'Png', 'ImageResolution': '200' } }" http://cloud.stimulsoft.com/1/reporttemplates/a8dde8679ecb43cbbba190786a2b44f3/run
 
-
 **Returns**:
 
 The JSON object contains the field "ResultTaskKey," which holds the key of the export task running in the background. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4383,33 +4040,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 You can download any element. For this, you need to know its unique key. You can [get the Item key using the Access Key command](https://www.stimulsoft.com/en/documentation/online/server-manual/index.html?toolbar.htm) in your [Stimulsoft Cloud account](https://cloud.stimulsoft.com/).
 
-
-![](../../../images/topics/Stimulsoft_Cloud.REST_API.Export.Download_1.png)
-
 **Url Structure**:
 
 https://cloud.stimulsoft.com/1/files/{ItemKey}
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: 22ed00099bd24fffacf9d5ad2344f457" http://cloud.stimulsoft.com/1/files/a8dde8679ecb43cbbba190786a2b44f3
 
-
 **Returns**:
 
 The JSON object containing the collection ResultItems, which contains a list of items in the specified folder of the current workspace. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
@@ -4462,31 +4111,25 @@ Source: https://stimulsoft.github.io/Stimulsoft.Cloud.API.Manual/Stimulsoft_Clou
 
 Getting the status of a task that is running in the background.
 
-
 **Url Structure**:
 
 http://cloud.stimulsoft.com/1/task/{taskKey}
-
 
 **Method**:
 
 GET
 
-
 **Parameters**:
 
 A custom header x-sti-SessionKey contains the session key of the current user. The URL contains the task key for tracking its status.
-
 
 **CURL example**:
 
 curl -X GET -H "x-sti-SessionKey: 1add6a4f1c5e481c80e964b613ee6089" http://reports.stimulsoft.com/1/task/{taskKey}
 
-
 **Returns**:
 
 The JSON object containing the collection ResultStatus, which contains a list of the task information. The success of the command execution is checked by the content of the field ResultSuccess.
-
 
 **Sample JSON response**
 
